@@ -20,8 +20,12 @@ After logging in as bandit1, we can ls to see a file '-'. As the shell interprat
 
 ## Level 3
 
-After logging in as bandit2, we ca ls to see a file 'spaces in this file name' named file. So the challange is to open the file which has spaces. Because commands will treat every words of the file name as different arguments. We can use single or double quotes to encapsuate the spaced filename or use '\' before spaces to avoid/neglate spaces. Eg:
+After logging in as bandit2, we can ls to see a file 'spaces in this file name' named file. So the challange is to open the file which has spaces. Because commands will treat every words of the file name as different arguments. We can use single or double quotes to encapsuate the spaced filename or use '\' before spaces to avoid/neglate spaces. Eg:
 command file\ with\ spaces
 or
 command 'file with spaces'
-using cat on this file with the above hack will output the password for level3.
+using cat on this file with the above hack will output the password.
+
+# Level 4
+
+After logging in as bandit3, we can ls to see a directory 'inhere'. cd to 'inhere' directory and hit the command 'ls -a'. The ls command list the current directory if no file/directory path is given as argument. And the -a flag outputs all the files and directories in the present directory including files and directory starting with '.'. The file is found named '.hidden'. 
