@@ -28,4 +28,4 @@ echo "Finding the password in the server..."
 echo "Found password!!"
 echo "$PASS1"
 echo $PASS1 > ./level_pass/level1
-exit 0
+./level1.sh

@@ -13,3 +13,7 @@ look man page for ssh, here -p is the port number. This will prompt you to enter
 
 After logging in as bandit0, we can ls. There is a readme amed file. Output the content of the file using cat command. cat <file>
 Wallah!! This is the password to the next level.
+
+## Level 2
+
+After logging in as bandit1, we can ls to see a file '-'. As the shell interprater and the cat command interprates '-' as a flag indecator, it doesn't process the file. So a simple hack for this problem is providing the full path of the file or using './' with expands to current working directory.
