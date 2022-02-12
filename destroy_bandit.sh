@@ -17,6 +17,11 @@ then
 	exit 2
 fi
 
+if [ -d ./level_pass ]
+then
+	rm -r level_pass
+fi
+
 echo "creating level_pass directory..."
 mkdir ./level_pass
 echo "storing password of level 0 in ~/level_pass/level0"

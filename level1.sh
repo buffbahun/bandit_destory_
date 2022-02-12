@@ -10,4 +10,4 @@ echo "Level2 password: $PASS2"
 
 echo $PASS2 > level_pass/level2
 
-exit 0
+./level2.sh

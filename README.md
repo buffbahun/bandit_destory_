@@ -17,3 +17,11 @@ Wallah!! This is the password to the next level.
 ## Level 2
 
 After logging in as bandit1, we can ls to see a file '-'. As the shell interprater and the cat command interprates '-' as a flag indecator, it doesn't process the file. So a simple hack for this problem is providing the full path of the file or using './' with expands to current working directory.
+
+## Level 3
+
+After logging in as bandit2, we ca ls to see a file 'spaces in this file name' named file. So the challange is to open the file which has spaces. Because commands will treat every words of the file name as different arguments. We can use single or double quotes to encapsuate the spaced filename or use '\' before spaces to avoid/neglate spaces. Eg:
+command file\ with\ spaces
+or
+command 'file with spaces'
+using cat on this file with the above hack will output the password for level3.
