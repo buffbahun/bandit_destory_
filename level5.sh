@@ -15,12 +15,12 @@ do
 		FILE_NAME=$(sshpass -p "$PASS5" ssh bandit5@bandit.labs.overthewire.org -p 2220 ls -lA ./inhere/${i} | grep '1033'| tr -s ' ' | cut -d ' ' -f 9)
 		ABS_PATH="./inhere/${i}/${FILE_NAME}"
 		echo "The file is located in: $ABS_PATH"
-		PASS6=$(sshpass -p "$PASS5" ssh bandit5@bandit.labs.overthewire.org -p 2220 cat ${ABS_PATH})
-		tput setab 7;tput setaf 1;echo "Level 6 password: ${PASS6}$(tput sgr0)";
+		PASS6=$(sshpass -p "$PASS5" ssh bandit5@bandit.labs.overthewire.org -p 2220 cat ${ABS_PATH} | tr -d "[:space:]" )
+		tput setab 7;tput setaf 1;echo "Level 6 password: ${PASS6}";tput sgr0
 		echo $PASS6 > ./level_pass/level6
 		break
 	fi
 done
 
-#chmod u+x ./level6.sh
-#./level6.sh
+chmod u+x ./level6.sh
+./level6.sh
