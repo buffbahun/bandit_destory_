@@ -33,3 +33,10 @@ After logging in as bandit4, we can ls to see a directory 'inhere'. cd to 'inher
 ## Level 5
 
 After logging in as bandit5, we can ls to see a directory 'inhere'. cd to 'inhere' to directory and hit ls. The ls command list all the directories. There are 19 directories each containg many file. So manually searching the required file is tedious. The challange specifies that the pass file is 1033 bytes is size, is not executable and is human readable(ASCII text). I have applied a for loop in all the directoris and long listed all the files on that particular directory to long list all the file. Then a grep is piped do that we can get the line containg '1033' which is the size of the file. Luclily there was only one file with this size. And it was both not executable and ascii text file. Cat to the file ouptup the require pass for bandit 6. 
+
+## Level 6
+
+After logging in as bandit6, we see no files in the current directory. According to the level challange, the pass file is somewhere in the server with has such properties:
+owned by user bandit7 and group bandit6
+33 bytes in size
+So, I ls the root with -R flag which list recursively. I piped the ls command on root with grep so that files with owner bandit7, group owner bandit6 and 33. The oupput gave the file name. Now to find the path of the file name, I used find command to search starting at root. The ouptup of the command gave the absolute path for that file. Now applying cat to the full path of the file gives the pass form lext level, Level 7.
