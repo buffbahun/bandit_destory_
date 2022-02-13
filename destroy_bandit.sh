@@ -30,7 +30,7 @@ echo $1 > ./level_pass/level0
 PASS1=$(sshpass -p "bandit0" ssh bandit0@bandit.labs.overthewire.org -p 2220 cat readme)
 
 echo "Finding the password in the server..."
-echo "Found password!!"
-echo "$PASS1"
+tput setab 7;tput setaf 1;echo "Found password!!"
+tput setab 7;tput setaf 1;echo "$PASS1";tput sgr0
 echo $PASS1 > ./level_pass/level1
 ./level1.sh
