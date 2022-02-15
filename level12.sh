@@ -57,6 +57,6 @@ tput setab 7;tput setaf 1;echo "level 13 password: $PASS13";tput sgr0
 
 echo $PASS13 > ./level_pass/level13
 
-#chmod u+x ./level13.sh
-#./level13.sh
+chmod u+x ./level13.sh
+./level13.sh
 
