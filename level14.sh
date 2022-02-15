@@ -4,9 +4,7 @@
 
 PASS14=$(cat ./level_pass/level14)
 
-PASS15=$(sshpass -p "$PASS14" ssh bandit14@bandit.labs.overthewire.org -p 2220 echo "$PASS14" | tee  nc localhost 30000)
-
-rm nc localhost 30000
+PASS15=$(sshpass -p "$PASS14" ssh bandit14@bandit.labs.overthewire.org -p 2220 "yes "$PASS14" | nc localhost 30000" | sed -n '2p')
 
 tput setab 7;tput setaf 1;echo "Level 15 password: $PASS15";tput sgr0
 
