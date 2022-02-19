@@ -79,7 +79,46 @@ For this level first we use xxd command with -r flag to convert the hexdump to b
 After logging in as bandit13, we can ls and see a private key file named sshkey.private. This file contains the private ssh key for this remote machine. according to this level we can use this private key file to directly login to level14 as bandit14 and get the pass for level14 at /etc/bandit\_pass/bandit14.
  For this level we can use the ssh commannd with -i flag which gives us the option for loging to the remote mchine with a private key file. Using this command we log into bandit14 and with the path provided above we can get the pass for level 14.
 
-## Level 15
+## Level 14
 
 After logging in as bandit14, we can use nc commnd for listining to differet ports. According to this level we can nc to port 30000 in localhost. And providing the pass of this level will output the pass for level 15.
 nc localhost 30000
+
+## Level 15
+
+After logging in as bandit15, we can use nc command with ssl flag to send request to server which is configured to sll security. The command for ssl encryted connection with server is as follows:
+ncat --ssl localhost 30001
+'30001' is the port where the server is listenning for ssl connection. Now passing the pass of level 15, the server sends the pass for level 16.
+
+## Level 16
+
+After logging in as bandit16, we can use nc command for scanning all the open ports in a server with a given port range. The command for scanning open ports is as follows:
+nc -z -v localhost 31000-32000
+The z flag is for scanning and v flag is for more verbous output. According to this level we scanned from port 31000 to 32000. The output givs all the availabe open ports in localhost. Now for finding the ssl enabled port we loop through all the open ports that we got. Using openssl command we can get information along with the certificate wethere a given port is ssl enabled. The command is:
+opemssl s\_client -connect localhost:\<port number\> 
+This comand outputs weather a port is ssl enabled and if so connects with that port for communication. After we get the ssl enabled open port on the machine, we provide pass of this level 16 and we get the pass for level 17 from the server.
+
+## Level 17
+
+After logging in as bandit17, we can ls home directory to see two text files password.old and password.new. According to the level, the pass for level is inside password.new files. The only difference in password.old and password.new is the password itself. So we can use utility called diff for differenciating between two or more files like this:
+diff password.new password.old
+This command gives the only difference between this two files. The line in the password.new is the pass for level 18.
+
+## Level 18
+
+According to this level due to modification made in .bashrc
+we cant login to this level. So we can simply pass commands to the ssh so that the commands get executed in the remote server. The command is simple as:
+ssh user@host -p <port> "commands"
+So now we can ls to the remote server which gives a readme file and again executing cat on that file through ssh we can get the pass for level 19.
+
+## Level 19
+
+After logging in as bandit19, we can ls home directory. There is a setuid binary. A setuid binary is simply a binary which gives previlage of the owner of the process at the time of execution. We can think as of sudo which givs a temporary root privilages without logging in as root. As the binary is owned bu bandit20 so we can have privilages of bandit20 while running this process. So now we can read /etc/bandit\_paass/bandit20 which is owned by bandit20 for gaining the pass for level20.
+
+## Level 20
+
+After logging in as bandit20, we can set a setuid binary which connects with a server that we specify as a argument and reads from the server. It then compairs the pass of level 20 with the server message. If it matches this binary again transmits the pass of level 21. So for this level we can create a server using nc command as follows:
+nc -l -p \<port\>
+The l flag is for creating a server and the p flag for local ports. As this program run indefinitely, we can run this program in background by appending '&' at the end of command. Now as we have to provide the pass of level 20 and to capture the message transmitted by binary we use redirection as follows:
+nc -l -l \<port\> \< fileContaingLvl20Pass > fileToStoreMsgByBin &
+Running this program in background and executing the setuid binary with any valid unused port same as above server program will give the pass for level 21 in the file specified in the server program. 

@@ -13,13 +13,12 @@ do
 
 	if [ "$TST" = "yes" ]
 	then
-		KEY=$(sshpass -p "$PASS16" ssh bandit16@bandit.labs.overthewire.org -p 2220 "yes 'cluFn7wTiGryunymYOu4RcffSxQluehd' | ncat --ssl localhost ${i} | grep -v 'Correct!'")
-		sshpass -p "$PASS16" ssh bandit16@bandit.labs.overthewire.org -p 2220 "$KEY" > /tmp/key	
+		sshpass -p "$PASS16" ssh bandit16@bandit.labs.overthewire.org -p 2220 "yes 'cluFn7wTiGryunymYOu4RcffSxQluehd' | ncat --ssl localhost ${i} | grep -v 'Correct!' > /tmp/keys"
 		break
 	fi
 done
+PASS17=$(sshpass -p "$PASS16" ssh bandit16@bandit.labs.overthewire.org -p 2220 "chmod 600 /tmp/keys; ssh -o BatchMode=yes -o StrictHostKeyChecking=no -i /tmp/keys bandit17@localhost cat /etc/bandit_pass/bandit17")
 
-PASS17=$(sshpass -p "$PASS16" ssh bandit16@bandit.labs.overthewire.org -p 2220 "chmod 600 /tmp/key && ssh -o BatchMode=yes -o StrictHostKeyChecking=no -i /tmp/key bandit17@localhost cat /etc/bandit_pass/bandit17")
 
 tput setab 7;tput setaf 1;echo "Level 17 password: $PASS17";tput sgr0
 
