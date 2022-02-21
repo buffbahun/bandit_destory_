@@ -28,6 +28,6 @@ tput setab 7;tput setaf 1;echo "Level 21 password: $PASSCHK";tput sgr0
 
 echo "$PASSCHK" > ./level_pass/level21
 
-#chmod u+x ./level21.sh
-#./level21.sh
+chmod u+x ./level21.sh
+./level21.sh
 
