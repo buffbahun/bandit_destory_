@@ -42,8 +42,8 @@ After logging in as bandit5, we can ls to see a directory 'inhere'. cd to 'inher
 ## Level 6
 
 After logging in as bandit6, we see no files in the current directory. According to the level challange, the pass file is somewhere in the server with has such properties:
-*owned by user bandit7 and group bandit6
-*33 bytes in size
+* owned by user bandit7 and group bandit6
+* 33 bytes in size
 So, I ls the root with -R flag which list recursively. I piped the ls command on root with grep so that files with owner bandit7, group owner bandit6 and 33. The oupput gave the file name. Now to find the path of the file name, I used find command to search starting at root. The ouptup of the command gave the absolute path for that file. Now applying cat to the full path of the file gives the pass form lext level, Level 7.
 
 ## Level 7
