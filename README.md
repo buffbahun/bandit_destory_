@@ -144,6 +144,7 @@ Now changing the permissions of this script, the cron will automatically run thi
 ## Level 24
 
 After logging in as bandit24, we can now find the pass for level 25 by brute force i.e., according to this level we passing correct 4 pin numeric password in a server running at port 30002 will give the pass for level 24. So that we can get the pass for next level by providing every 4 digit combinations of numbers until the server gives the pass. So to create numbers from 0000 to 9999 we can use for loop in the shell as follows:
+shell
 ```
 for var in {0..9999}
 do
