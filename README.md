@@ -174,4 +174,4 @@ Redirecting the file (which contains pass of this level a space and the four dig
 
 ## Level 25
 
-[![Video of the hack](https://img.youtube.com/vi/https://www.youtube.com/watch?v=xI-BnTA2-ys/0.jpg)](https://www.youtube.com/watch?v=https://www.youtube.com/watch?v=xI-BnTA2-ys)
+[![Video of the hack](https://img.youtube.com/vi/xI-BnTA2-ys/0.jpg)](https://www.youtube.com/watch?v=xI-BnTA2-ys)
