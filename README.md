@@ -123,7 +123,7 @@ This command gives the only difference between this two files. The line in the p
 According to this level due to modification made in .bashrc
 we cant login to this level. So we can simply pass commands to the ssh so that the commands get executed in the remote server. The command is simple as:
 ```shell
-ssh user@host -p \<port\> "commands"
+ssh user@host -p <port> "commands"
 ```
 So now we can ls to the remote server which gives a readme file and again executing cat on that file through ssh we can get the pass for level 19.
 
@@ -135,11 +135,11 @@ After logging in as bandit19, we can ls home directory. There is a setuid binary
 
 After logging in as bandit20, we can set a setuid binary which connects with a server that we specify as a argument and reads from the server. It then compairs the pass of level 20 with the server message. If it matches this binary again transmits the pass of level 21. So for this level we can create a server using nc command as follows:
 ```shell
-nc -l -p \<port\>
+nc -l -p <port>
 ```
 The l flag is for creating a server and the p flag for local ports. As this program run indefinitely, we can run this program in background by appending '&' at the end of command. Now as we have to provide the pass of level 20 and to capture the message transmitted by binary we use redirection as follows:
 ```shell
-nc -l -l \<port\> \< fileContaingLvl20Pass > fileToStoreMsgByBin &
+nc -l -l <port> < fileContaingLvl20Pass > fileToStoreMsgByBin &
 ```
 Running this program in background and executing the setuid binary with any valid unused port same as above server program will give the pass for level 21 in the file specified in the server program. 
 
