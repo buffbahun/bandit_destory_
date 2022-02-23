@@ -5,13 +5,18 @@ This is my new project for exploring linux, terminal, shell and shell scripting.
 ## Level 0
 
 The password is provided in the site as a entry point, which is bandit0. Here we use ssh for loging to the remote server. The command is:
- ssh bandit0@bandit.labs.overthewire.org -p 2220
+```shell
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+```
 look man page for ssh, here -p is the port number. This will prompt you to enter password where you can enter bandit0.
  And here we are logged in to the remote server as bandit0.
 
 ## Level 1
 
-After logging in as bandit1, we can ls. There is a readme amed file. Output the content of the file using cat command. cat <file>
+After logging in as bandit1, we can ls. There is a readme amed file. Output the content of the file using cat command.
+```shell
+cat <file>
+```
 Wallah!! This is the password to the next level.
 
 ## Level 2
@@ -37,8 +42,8 @@ After logging in as bandit5, we can ls to see a directory 'inhere'. cd to 'inher
 ## Level 6
 
 After logging in as bandit6, we see no files in the current directory. According to the level challange, the pass file is somewhere in the server with has such properties:
-owned by user bandit7 and group bandit6
-33 bytes in size
+[]owned by user bandit7 and group bandit6
+[]33 bytes in size
 So, I ls the root with -R flag which list recursively. I piped the ls command on root with grep so that files with owner bandit7, group owner bandit6 and 33. The oupput gave the file name. Now to find the path of the file name, I used find command to search starting at root. The ouptup of the command gave the absolute path for that file. Now applying cat to the full path of the file gives the pass form lext level, Level 7.
 
 ## Level 7
@@ -66,7 +71,9 @@ For this level we can use base64 command which when used with -d flag decrypts t
 After logging in as bandit11, we can see a file named data.txt, which is a regular ascii text file. This file contains some text. According to the level the text in the file is the transformed file by rotating every alphabet in the the original text by 13 positions.
 
 For this level we can use tr command which transforms text in a file. As the text is transformed by 13, a letter "a/A" is transformed to "n". Using this logic we can:
-tr \[N-ZA-Mn-za-m\] \[A-Za-z\]
+```shell
+tr [N-ZA-Mn-za-m] [A-Za-z]
+```
 Now applying this will decrypt the file into its original form. Now we can get the pass for level 12.
 
 ## Level 12 
@@ -87,15 +94,21 @@ nc localhost 30000
 ## Level 15
 
 After logging in as bandit15, we can use nc command with ssl flag to send request to server which is configured to sll security. The command for ssl encryted connection with server is as follows:
+```shell
 ncat --ssl localhost 30001
+```
 '30001' is the port where the server is listenning for ssl connection. Now passing the pass of level 15, the server sends the pass for level 16.
 
 ## Level 16
 
 After logging in as bandit16, we can use nc command for scanning all the open ports in a server with a given port range. The command for scanning open ports is as follows:
+```shell
 nc -z -v localhost 31000-32000
+```
 The z flag is for scanning and v flag is for more verbous output. According to this level we scanned from port 31000 to 32000. The output givs all the availabe open ports in localhost. Now for finding the ssl enabled port we loop through all the open ports that we got. Using openssl command we can get information along with the certificate wethere a given port is ssl enabled. The command is:
-opemssl s\_client -connect localhost:\<port number\> 
+```shell
+openssl s_client -connect localhost:<port number> 
+```
 This comand outputs weather a port is ssl enabled and if so connects with that port for communication. After we get the ssl enabled open port on the machine, we provide pass of this level 16 and we get the pass for level 17 from the server.
 
 ## Level 17
@@ -108,7 +121,9 @@ This command gives the only difference between this two files. The line in the p
 
 According to this level due to modification made in .bashrc
 we cant login to this level. So we can simply pass commands to the ssh so that the commands get executed in the remote server. The command is simple as:
-ssh user@host -p <port> "commands"
+```shell
+ssh user@host -p \<port\> "commands"
+```
 So now we can ls to the remote server which gives a readme file and again executing cat on that file through ssh we can get the pass for level 19.
 
 ## Level 19
@@ -118,9 +133,13 @@ After logging in as bandit19, we can ls home directory. There is a setuid binary
 ## Level 20
 
 After logging in as bandit20, we can set a setuid binary which connects with a server that we specify as a argument and reads from the server. It then compairs the pass of level 20 with the server message. If it matches this binary again transmits the pass of level 21. So for this level we can create a server using nc command as follows:
+```shell
 nc -l -p \<port\>
+```
 The l flag is for creating a server and the p flag for local ports. As this program run indefinitely, we can run this program in background by appending '&' at the end of command. Now as we have to provide the pass of level 20 and to capture the message transmitted by binary we use redirection as follows:
+```shell
 nc -l -l \<port\> \< fileContaingLvl20Pass > fileToStoreMsgByBin &
+```
 Running this program in background and executing the setuid binary with any valid unused port same as above server program will give the pass for level 21 in the file specified in the server program. 
 
 ## Level 21
@@ -135,7 +154,7 @@ After logging in as bandit22, we can similarly to level 21, can view the cron co
 ## Level 23
 
 After logging in as bandit23, we can similar to previous levels, can view the cron configurations file for level 24, which contains the location of shell script which this cron runs. Opening the script we can see that this script runs every shell scripts in the /var/spool/bandit24 directory and deleats it onces completed. So for this level we can create our own script in /var/spool/bandit24 directory so that when the cron of level 24 runs the script inturn runs our custom script. So, we can write a script as such:
-```
+```shell
 #! /bin/bash
 cat /etc/bandit_pass/bandit24 > /tmp/<filename>
 ```
@@ -144,8 +163,7 @@ Now changing the permissions of this script, the cron will automatically run thi
 ## Level 24
 
 After logging in as bandit24, we can now find the pass for level 25 by brute force i.e., according to this level we passing correct 4 pin numeric password in a server running at port 30002 will give the pass for level 24. So that we can get the pass for next level by providing every 4 digit combinations of numbers until the server gives the pass. So to create numbers from 0000 to 9999 we can use for loop in the shell as follows:
-shell
-```
+```shell
 for var in {0..9999}
 do
 	echo $i
