@@ -10,7 +10,7 @@ sshpass -p "$PASS24" ssh bandit24@bandit.labs.overthewire.org -p 2220 "rm /tmp/l
 
 tput setab 7;tput setaf 1;echo "Level 25 password: $PASS25";tput sgr0
 
-echo ""
+echo " "
 
 tput setab 1;tput setaf 7;echo "You have destroyed bandit!!";tput sgr0
 
