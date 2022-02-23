@@ -122,3 +122,32 @@ nc -l -p \<port\>
 The l flag is for creating a server and the p flag for local ports. As this program run indefinitely, we can run this program in background by appending '&' at the end of command. Now as we have to provide the pass of level 20 and to capture the message transmitted by binary we use redirection as follows:
 nc -l -l \<port\> \< fileContaingLvl20Pass > fileToStoreMsgByBin &
 Running this program in background and executing the setuid binary with any valid unused port same as above server program will give the pass for level 21 in the file specified in the server program. 
+
+## Level 21
+
+After logging in as bandit21, we can check /etc/cron.d which is a configuration of all the cron programs that we run.
+The configuration directory contains configuration file for bandit22. Opening this file gives the path for a shell script which this cron runs in a specific intervals. Now, as the files is a shell script we use cat for reading the contents of the script. The script contains the location of pass for level 22. Opening the file specified in the script gives the pass for level 22.
+
+## Level 22
+
+After logging in as bandit22, we can similarly to level 21, can view the cron configuration file for level 23, which contains the location of shell script which this cron runs. Opening the script we can see that 'md5sum' is used for creating cryptographic checksum of a given file or strings. This gives a long ascii value which is used as file name where the pass of level 23 is stored. Now applying md5sum as the script to the string we can get the name of the file where the pass for level 23 is stored. Opening the file we get the pass for level 23.
+
+## Level 23
+
+After logging in as bandit23, we can similar to previous levels, can view the cron configurations file for level 24, which contains the location of shell script which this cron runs. Opening the script we can see that this script runs every shell scripts in the /var/spool/bandit24 directory and deleats it onces completed. So for this level we can create our own script in /var/spool/bandit24 directory so that when the cron of level 24 runs the script inturn runs our custom script. So, we can write a script as such:
+```
+#! /bin/bash
+cat /etc/bandit_pass/bandit24 > /tmp/<filename>
+```
+Now changing the permissions of this script, the cron will automatically run this script but takes some time, when this script runs the pass for level 24 is stored in the location specified in our script. Opening this file now gives the pass for level 24.
+
+## Level 24
+
+After logging in as bandit24, we can now find the pass for level 25 by brute force i.e., according to this level we passing correct 4 pin numeric password in a server running at port 30002 will give the pass for level 24. So that we can get the pass for next level by providing every 4 digit combinations of numbers until the server gives the pass. So to create numbers from 0000 to 9999 we can use for loop in the shell as follows:
+```
+for var in {0..9999}
+do
+	echo $i
+done
+```
+Redirecting the file (which contains pass of this level a space and the four digit number in every line) to the sever running at port 30002 will try every combinations on that file until the 4 digit code matches and the server will give the pass for level 25.
