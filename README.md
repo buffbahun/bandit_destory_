@@ -171,3 +171,7 @@ do
 done
 ```
 Redirecting the file (which contains pass of this level a space and the four digit number in every line) to the sever running at port 30002 will try every combinations on that file until the 4 digit code matches and the server will give the pass for level 25.
+
+## Level 25
+
+[![Video of the hack](https://img.youtube.com/vi/https://www.youtube.com/watch?v=xI-BnTA2-ys/0.jpg)](https://www.youtube.com/watch?v=https://www.youtube.com/watch?v=xI-BnTA2-ys)
